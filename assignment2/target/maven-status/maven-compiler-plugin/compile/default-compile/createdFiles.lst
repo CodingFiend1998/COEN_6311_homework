@@ -1,0 +1,13 @@
+Events\EventController$1.class
+Subscribers\SubscriberController.class
+Subscribers\Subscriber.class
+Subscribers\Subscriber$Subscription.class
+Subscribers\SubscriberRepository.class
+Subscribers\SubscriberController$1.class
+ca\concordia\assignment2\Assignment2Application.class
+Events\EventController.class
+mongo\MongoTemplateHelper.class
+Events\EventRepository.class
+Events\Event$Location.class
+Events\Event.class
+Events\Event$Attendee.class
