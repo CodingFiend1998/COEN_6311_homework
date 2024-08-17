@@ -8,9 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 import java.util.List;
 
-@Document(collection = "Subscribers")
+@Document(collection = "subscribers")
 public class Subscriber {
-
     @Id
     private ObjectId id;
     private String name;
@@ -19,7 +18,6 @@ public class Subscriber {
     private List<Subscription> subscriptions = new ArrayList<>();
 
     // Getters and Setters
-
     public ObjectId getId() {
         return id;
     }
@@ -60,13 +58,10 @@ public class Subscriber {
         this.subscriptions = subscriptions;
     }
 
-    // Nested class
-
+    // Nested Subscription class with its getters and setters
     public static class Subscription {
         private ObjectId eventId;
         private String status;
-
-        // Getters and Setters
 
         public ObjectId getEventId() {
             return eventId;

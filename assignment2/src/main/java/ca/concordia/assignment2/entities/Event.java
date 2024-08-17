@@ -9,9 +9,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Document(collection = "Events")
+@Document(collection = "events")
 public class Event {
-
     @Id
     private ObjectId id;
     private String name;
@@ -21,7 +20,6 @@ public class Event {
     private List<Attendee> attendees = new ArrayList<>();
 
     // Getters and Setters
-
     public ObjectId getId() {
         return id;
     }
@@ -70,8 +68,7 @@ public class Event {
         this.attendees = attendees;
     }
 
-    // Nested classes
-
+    // Nested Location and Attendee classes with their getters and setters
     public static class Location {
         private String address;
         private String city;
@@ -117,7 +114,6 @@ public class Event {
         private String status;
 
         // Getters and Setters
-
         public ObjectId getSubscriberId() {
             return subscriberId;
         }

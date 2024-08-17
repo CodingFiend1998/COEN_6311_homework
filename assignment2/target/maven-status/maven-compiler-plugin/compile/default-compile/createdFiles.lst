@@ -1,1 +1,5 @@
+ca\concordia\assignment2\services\SubscriberService.class
 ca\concordia\assignment2\Assignment2Application.class
+ca\concordia\assignment2\services\EventService.class
+ca\concordia\assignment2\services\EventServiceImpl.class
+ca\concordia\assignment2\services\SubscriberServiceImpl.class

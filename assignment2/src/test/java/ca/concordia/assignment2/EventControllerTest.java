@@ -2,9 +2,8 @@ package ca.concordia.assignment2;
 
 import ca.concordia.assignment2.controller.EventController;
 import ca.concordia.assignment2.entities.Event;
-import ca.concordia.assignment2.entities.Subscriber;
-import ca.concordia.assignment2.repositories.EventRepository;
-import ca.concordia.assignment2.repositories.SubscriberRepository;
+import ca.concordia.assignment2.services.EventService;
+import ca.concordia.assignment2.services.SubscriberService;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,29 +14,47 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.Optional;
+import java.util.Date;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class EventControllerTest {
+class EventControllerTest {
+
     private MockMvc mockMvc;
 
     @Mock
-    private EventRepository eventRepository;
+    private EventService eventService;
 
     @Mock
-    private SubscriberRepository subscriberRepository;
+    private SubscriberService subscriberService;
 
     @InjectMocks
     private EventController eventController;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+        MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(eventController).build();
+    }
+
+    @Test
+    void testCreateEvent() throws Exception {
+        Event event = new Event();
+        event.setId(new ObjectId());
+        event.setName("Test Event");
+        event.setDate(new Date());
+
+        when(eventService.createEvent(any(Event.class))).thenReturn(event);
+
+        mockMvc.perform(post("/events")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\": \"Test Event\", \"date\": \"2024-08-16T00:00:00Z\"}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Test Event"));
     }
 
     @Test
@@ -45,48 +62,25 @@ public class EventControllerTest {
         ObjectId eventId = new ObjectId();
         ObjectId subscriberId = new ObjectId();
 
-        Event event = new Event();
-        event.setId(eventId);
+        // If subscribeToEvent returns void, use doNothing()
+        doNothing().when(eventService).subscribeToEvent(eventId, subscriberId);
 
-        Subscriber subscriber = new Subscriber();
-        subscriber.setId(subscriberId);
-
-        when(eventRepository.findById(eventId)).thenReturn(Optional.of(event));
-        when(subscriberRepository.findById(subscriberId)).thenReturn(Optional.of(subscriber));
-
-        mockMvc.perform(post("/events/{eventId}/subscribe/{subscriberId}", eventId, subscriberId)
-                        .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(post("/events/" + eventId + "/subscribe")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"subscriberId\": \"" + subscriberId + "\"}"))
                 .andExpect(status().isOk());
-
-        verify(eventRepository, times(1)).save(any(Event.class));
-        verify(subscriberRepository, times(1)).save(any(Subscriber.class));
     }
 
     @Test
     void testPublishEvent() throws Exception {
         ObjectId eventId = new ObjectId();
-        ObjectId subscriberId = new ObjectId();
 
-        Event event = new Event();
-        event.setId(eventId);
+        // If publishEvent returns void, use doNothing()
+        doNothing().when(eventService).publishEvent(eventId);
 
-        Event.Attendee attendee = new Event.Attendee();
-        attendee.setSubscriberId(subscriberId);
-        event.getAttendees().add(attendee);
-
-        Subscriber subscriber = new Subscriber();
-        subscriber.setId(subscriberId);
-        subscriber.setName("John Doe");
-
-        when(eventRepository.findById(eventId)).thenReturn(Optional.of(event));
-        when(subscriberRepository.findById(subscriberId)).thenReturn(Optional.of(subscriber));
-
-        mockMvc.perform(post("/events/{eventId}/publish", eventId)
-                        .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(post("/events/" + eventId + "/publish"))
                 .andExpect(status().isOk());
-
-        verify(eventRepository, times(1)).findById(eventId);
-        verify(subscriberRepository, times(1)).findById(subscriberId);
     }
 
+    // Add more tests for other endpoints as needed
 }
