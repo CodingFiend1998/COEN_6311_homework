@@ -1,8 +1,7 @@
-E:\Khanahmadi\Concordia\Courses\Software Engineering\project\coen6311\coen6311\assignment2\src\main\java\ca\concordia\assignment2\Assignment2Application.java
-E:\Khanahmadi\Concordia\Courses\Software Engineering\project\coen6311\coen6311\assignment2\src\main\java\Events\Event.java
-E:\Khanahmadi\Concordia\Courses\Software Engineering\project\coen6311\coen6311\assignment2\src\main\java\Events\EventController.java
-E:\Khanahmadi\Concordia\Courses\Software Engineering\project\coen6311\coen6311\assignment2\src\main\java\Events\EventRepository.java
-E:\Khanahmadi\Concordia\Courses\Software Engineering\project\coen6311\coen6311\assignment2\src\main\java\mongo\MongoTemplateHelper.java
-E:\Khanahmadi\Concordia\Courses\Software Engineering\project\coen6311\coen6311\assignment2\src\main\java\Subscribers\Subscriber.java
-E:\Khanahmadi\Concordia\Courses\Software Engineering\project\coen6311\coen6311\assignment2\src\main\java\Subscribers\SubscriberController.java
-E:\Khanahmadi\Concordia\Courses\Software Engineering\project\coen6311\coen6311\assignment2\src\main\java\Subscribers\SubscriberRepository.java
+E:\Khanahmadi\Concordia\Courses\Software Engineering\project\coen6311\coen6311\ver2_assignment2\src\main\java\ca\concordia\assignment2\Assignment2Application.java
+E:\Khanahmadi\Concordia\Courses\Software Engineering\project\coen6311\coen6311\ver2_assignment2\src\main\java\ca\concordia\assignment2\controller\EventController.java
+E:\Khanahmadi\Concordia\Courses\Software Engineering\project\coen6311\coen6311\ver2_assignment2\src\main\java\ca\concordia\assignment2\controller\SubscriberController.java
+E:\Khanahmadi\Concordia\Courses\Software Engineering\project\coen6311\coen6311\ver2_assignment2\src\main\java\ca\concordia\assignment2\entities\Event.java
+E:\Khanahmadi\Concordia\Courses\Software Engineering\project\coen6311\coen6311\ver2_assignment2\src\main\java\ca\concordia\assignment2\entities\Subscriber.java
+E:\Khanahmadi\Concordia\Courses\Software Engineering\project\coen6311\coen6311\ver2_assignment2\src\main\java\ca\concordia\assignment2\repositories\EventRepository.java
+E:\Khanahmadi\Concordia\Courses\Software Engineering\project\coen6311\coen6311\ver2_assignment2\src\main\java\ca\concordia\assignment2\repositories\SubscriberRepository.java
